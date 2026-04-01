@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +17,6 @@ public class ProductRequestDto {
     private String description;
     private BigDecimal price;
     private BigDecimal rating;
-    private String category;
+    private Long category_id;
     private String image;
 }

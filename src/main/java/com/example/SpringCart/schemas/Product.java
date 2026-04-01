@@ -22,6 +22,8 @@ public class Product {
     private String description;
     private BigDecimal price;
     private BigDecimal rating;
-    private String category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
     private String image;
 }
