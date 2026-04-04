@@ -1,14 +1,13 @@
 package com.example.SpringCart.services;
 
+import com.example.SpringCart.dtos.CategoryRequestDto;
 import com.example.SpringCart.repositories.CategoryRepository;
 import com.example.SpringCart.schemas.Category;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Data
 @RequiredArgsConstructor
 @Service
 public class CategorySevice {
@@ -22,12 +21,15 @@ public class CategorySevice {
         return categoryRepository.findById(id).orElseThrow( () -> new RuntimeException("Category Not Found for id" + id) );
     }
     //create category
-    public Category createCategory(Category category) {
+    public Category createCategory(CategoryRequestDto categoryRequestDto) {
+        Category category = Category.builder()
+                .name(categoryRequestDto.getName())
+                .build();
         return categoryRepository.save(category);
     }
     //delete category
     public void deleteCategory(Long id) {
-        getCategoryById(id);
-        categoryRepository.deleteById(id);
+        Category category = getCategoryById(id);
+        categoryRepository.delete(category);
     }
 }

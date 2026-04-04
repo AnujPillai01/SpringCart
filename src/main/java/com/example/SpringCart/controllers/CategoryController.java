@@ -1,5 +1,6 @@
 package com.example.SpringCart.controllers;
 
+import com.example.SpringCart.dtos.CategoryRequestDto;
 import com.example.SpringCart.schemas.Category;
 import com.example.SpringCart.services.CategorySevice;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    public Category createCategory(@RequestBody Category category) {
-        return categorySevice.createCategory(category);
+    public Category createCategory(@RequestBody CategoryRequestDto categoryRequestDto) {
+        return categorySevice.createCategory(categoryRequestDto);
     }
 
-    @DeleteMapping
-    public void deleteCategory(Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable Long id) {
         categorySevice.deleteCategory(id);
     }
 }
